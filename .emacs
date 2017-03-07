@@ -1,3 +1,5 @@
+(package-initialize)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -7,6 +9,10 @@
    [default default default italic underline success warning error])
  '(custom-enabled-themes (quote (misterioso)))
  '(menu-bar-mode nil)
+ '(package-archives
+   (quote
+    (("gnu" . "http://elpa.gnu.org/packages/")
+     ("melpa" . "https://melpa.org/packages/"))))
  '(scroll-bar-mode nil)
  '(tool-bar-mode nil))
 (custom-set-faces

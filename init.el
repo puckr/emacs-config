@@ -88,6 +88,24 @@
    ["#073642" "#dc322f" "#859900" "#b58900" "#268bd2" "#d33682" "#2aa198" "#eee8d5"])
  '(xterm-color-names-bright
    ["#002b36" "#cb4b16" "#586e75" "#657b83" "#839496" "#6c71c4" "#93a1a1" "#fdf6e3"]))
+
+;;Javasript hook
+(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-jsx-mode))
+(add-to-list 'auto-mode-alist '("\\.json\\'" . json-mode))
+(add-to-list 'auto-mode-alist '("\\.jsx\\'" . js2-jsx-mode))
+(add-to-list 'interpreter-mode-alist '("node" . js2-jsx-mode))
+
+(add-hook 'js2-mode-hook
+	  (lambda ()
+	    (setq-local company-async-timeout 5)
+	    (company-mode)
+	    (setq-local js2-global-externs
+			'("fetch" "async" "Headers" "await" "WebSocket" "FormData"))
+	    (setq-local js2-basic-offset 2)
+	    (define-key js2-mode-map (kbd "M-/")
+	      'company-tern)
+	    (tern-mode)))
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

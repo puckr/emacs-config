@@ -1,5 +1,3 @@
-
-(package-initialize)
 ;; packages to install before starting:
 ;; org
 ;; magit
@@ -7,6 +5,21 @@
 ;; window-numbering-mode
 ;; tern-mode
 ;; company-mode (if you cannot find it, try company)
+
+(setq company-backends '(company-clang
+			 company-capf
+			 company-c-headers
+			 company-jedi))
+
+;; Create a useful notes buffer
+((lambda ()
+  (with-temp-buffer
+    (insert-file-contents "~/.emacs.d/notes.txt")
+    (setq initial-scratch-message (buffer-string)))))
+
+(package-initialize)
+(autoload 'window-number-mode "window-number")
+(autoload 'company-mode "company")
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.

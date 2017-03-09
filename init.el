@@ -1,5 +1,6 @@
 ;; packages to install before starting:
 ;; org
+;; direx
 ;; magit
 ;; window-number
 ;; window-numbering-mode

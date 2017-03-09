@@ -8,15 +8,25 @@
 ;; company-mode (if you cannot find it, try company)
 
 (setq company-backends '(company-clang
-			 company-capf
-			 company-c-headers
-			 company-jedi))
+     company-capf
+     company-c-headers
+     company-jedi))
 
 ;; Create a useful notes buffer
 ((lambda ()
   (with-temp-buffer
     (insert-file-contents "~/.emacs.d/notes.txt")
     (setq initial-scratch-message (buffer-string)))))
+
+(defun new-untitled-frame ()
+  (interactive)
+  (let ((bn "Untitled-")
+        (num 1))
+    (while
+        (get-buffer (concat bn (number-to-string num))) 
+      (setq num (1+ num))) 
+    (switch-to-buffer-other-frame
+     (concat bn (number-to-string num)))))
 
 (package-initialize)
 (autoload 'window-number-mode "window-number")
@@ -60,8 +70,6 @@
   "#+EMAIL:    robert1999.g@gmail.com\n"
   "#+LANGUAGE: en\n"
   "#+STARTUP: indent\n"
-  "#+LATEX_HEADER: \\usepackage{lmodern}\n"
-  "#+LATEX_HEADER: \\usepackage[T1]{fontenc}\n"
   "#+OPTIONS:  toc:nil num:0\n")
 
 (define-skeleton my-html-defaults
@@ -82,7 +90,7 @@
 ;; ;; Just kill the shell, don't ask me.
 ;; ;; I do a lambda so that its not evaluated at init load time.
 (add-hook 'shell-mode-hook (lambda ()
-			     (company-mode)))
+    (company-mode)))
 
 (window-number-mode)
 (window-number-meta-mode)
@@ -91,8 +99,8 @@
 (tool-bar-mode -1)
 ;; Gives me the full name of the buffer, hate just having foo.c
 (add-hook 'find-file-hooks
-	  '(lambda ()
-	     (setq mode-line-buffer-identification 'buffer-file-truename)))
+  '(lambda ()
+     (setq mode-line-buffer-identification 'buffer-file-truename)))
 (setq-default indicate-empty-lines t)
 ;; Revert all buffers, usually related to a git stash/pull/*
 (global-set-key (kbd "C-\\") 'revert-all-buffers)
@@ -106,7 +114,13 @@
 (global-unset-key (kbd "C-M-r"))
 ;; Make searches be regex searches!
 (global-set-key (kbd "C-s") 'isearch-forward-regexp)
+(global-unset-key (kbd "C-n"))
+(global-set-key (kbd "C-n") #'new-untitled-frame)
 (global-set-key (kbd "C-r") 'isearch-backward-regexp)
+(global-set-key (kbd "<C-up>") 'shrink-window)
+(global-set-key (kbd "<C-down>") 'enlarge-window)
+(global-set-key (kbd "<C-left>") 'shrink-window-horizontally)
+(global-set-key (kbd "<C-right>") 'enlarge-window-horizontally)
 (setq global-linum-mode t)
 
 (add-hook 'html-mode-hook
@@ -136,7 +150,7 @@
 (add-hook 'scss-mode-hook (lambda ()
  (setq-local scss-compile-at-save t)
  (setq-local scss-output-directory "../css")
- (auto-complete-mode)
+ (auto-complete)
  (define-key css-mode-map (kbd "M-/")
    'ac-start )))
 
@@ -151,15 +165,15 @@
 (add-to-list 'interpreter-mode-alist '("node" . js2-jsx-mode))
 
 (add-hook 'js2-mode-hook
-	  (lambda ()
-	    (setq-local company-async-timeout 5)
-	    (company-mode)
-	    (setq-local js2-global-externs
-			'("fetch" "async" "Headers" "await" "WebSocket" "FormData"))
-	    (setq-local js2-basic-offset 2)
-	    (define-key js2-mode-map (kbd "M-/")
-	      'company-tern)
-	    (tern-mode)))
+  (lambda ()
+    (setq-local company-async-timeout 5)
+    (company-mode)
+    (setq-local js2-global-externs
+	'("fetch" "async" "Headers" "await" "WebSocket" "FormData"))
+    (setq-local js2-basic-offset 2)
+    (define-key js2-mode-map (kbd "M-/")
+      'company-tern)
+    (tern-mode)))
 
 
 ;; C++ stuff, basically just be aware of it.

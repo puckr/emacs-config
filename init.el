@@ -18,13 +18,19 @@
     (insert-file-contents "~/.emacs.d/notes.txt")
     (setq initial-scratch-message (buffer-string)))))
 
+(defun newterm ()
+  "Start a terminal and rename buffer."
+  (interactive)
+  (term "/bin/bash")
+  (rename-uniquely))
+
 (defun new-untitled-frame ()
   (interactive)
   (let ((bn "Untitled-")
         (num 1))
     (while
-        (get-buffer (concat bn (number-to-string num))) 
-      (setq num (1+ num))) 
+        (get-buffer (concat bn (number-to-string num)))
+      (setq num (1+ num)))
     (switch-to-buffer-other-frame
      (concat bn (number-to-string num)))))
 

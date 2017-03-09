@@ -117,6 +117,7 @@
 (global-unset-key (kbd "C-n"))
 (global-set-key (kbd "C-n") #'new-untitled-frame)
 (global-set-key (kbd "C-r") 'isearch-backward-regexp)
+(global-set-key (kbd "C-M-t") 'term)
 (global-set-key (kbd "<C-up>") 'shrink-window)
 (global-set-key (kbd "<C-down>") 'enlarge-window)
 (global-set-key (kbd "<C-left>") 'shrink-window-horizontally)

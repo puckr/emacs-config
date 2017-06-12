@@ -25,6 +25,9 @@
   (term "/bin/bash")
   (rename-uniquely))
 
+(add-hook 'shell-mode-hook (lambda ()
+			     (rename-uniquely)))
+
 (defun new-untitled-frame ()
   (interactive)
   (let ((bn "Untitled-")

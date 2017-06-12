@@ -133,6 +133,7 @@
 (global-set-key (kbd "<C-left>") 'shrink-window-horizontally)
 (global-set-key (kbd "<C-right>") 'enlarge-window-horizontally)
 (setq global-linum-mode t)
+(setq make-backup-files nil)
 
 (add-hook 'html-mode-hook
  (lambda ()

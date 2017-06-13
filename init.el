@@ -4,13 +4,15 @@
 
 ;; packages to install before starting:
 ;; org
-;; direx
+;; direx(there is better alternative at the end so you can skip this one)
 ;; magit
 ;; window-number
 ;; window-numbering-mode
 ;; tern-mode
 ;; tern-mode-autocomplete
 ;; company-mode (if you cannot find it, try company)
+;; all-the-icons (make sure to install it's fonts too)
+;; neotree
 
 
 ;;; Code:

@@ -4,15 +4,13 @@
 
 ;; packages to install before starting:
 ;; org
-;; direx(there is better alternative at the end so you can skip this one)
+;; direx
 ;; magit
 ;; window-number
 ;; window-numbering-mode
 ;; tern-mode
 ;; tern-mode-autocomplete
 ;; company-mode (if you cannot find it, try company)
-;; all-the-icons (make sure to install it's fonts too)
-;; neotree
 
 
 ;;; Code:
@@ -69,7 +67,7 @@
  '(custom-safe-themes
    (quote
     ("a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "5dc0ae2d193460de979a463b907b4b2c6d2c9c4657b2e9e66b8898d2592e3de5" "cedd3b4295ac0a41ef48376e16b4745c25fa8e7b4f706173083f16d5792bb379" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "38e64ea9b3a5e512ae9547063ee491c20bd717fe59d9c12219a0b1050b439cdd" "98cc377af705c0f2133bb6d340bf0becd08944a588804ee655809da5d8140de6" "f5ad3af69f2b6b7c547208b8708d4fa7928b5697ca0845633d1d67c2d145952a" default)))
- ; '(desktop-save-mode t)
+ '(desktop-save-mode t)
  '(desktop-save t)
  '(inhibit-startup-screen t)
  '(neotree-mode t)
@@ -150,7 +148,9 @@
 (global-set-key (kbd "<C-left>") 'shrink-window-horizontally)
 (global-set-key (kbd "<C-right>") 'enlarge-window-horizontally)
 (global-set-key [f8] 'neotree-toggle)
-(setq global-linum-mode t)
+(setq linum-format " %4d\u2502 ")
+(setq-default left-fringe-width 0)
+(setq-default right-fringe-width 0)
 (setq make-backup-files nil)
 (setq neo-smart-open t)
 
@@ -226,7 +226,10 @@
  ;; If there is more than one, they won't work right.
 )
 
-(add-hook 'after-init-hook #'neotree-toggle)
+; (add-hook 'after-init-hook #'neotree-toggle)
 
 (provide 'init)
 ;;; init.el ends here
+;; ## added by OPAM user-setup for emacs / base ## 56ab50dc8996d2bb95e7856a6eddb17b ## you can edit, but keep this line
+(require 'opam-user-setup "~/.emacs.d/opam-user-setup.el")
+;; ## end of OPAM user-setup addition for emacs / base ## keep this line
